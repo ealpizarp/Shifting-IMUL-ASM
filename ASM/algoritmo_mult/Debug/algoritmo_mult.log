@@ -1,0 +1,4 @@
+﻿  Assembling main.asm...
+main.asm(15): warning A4011: multiple .MODEL directives found : .MODEL ignored
+main.asm(94): error A2001: immediate operand not allowed
+C:\Program Files\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\BuildCustomizations\masm.targets(70,5): error MSB3721: The command "ml.exe /c /nologo /Zi /Fo"Debug\main.obj" /W3 /errorReport:prompt  /Tamain.asm" exited with code 1.

@@ -1,0 +1,2 @@
+C:\Users\arikt\Desktop\Arquitectura de computadores\Proyectos\Proyecto 1\grupo_08_proyecto_1\ASM\algoritmo_mult\Debug\algoritmo_mult.exe
+C:\Users\arikt\Desktop\Arquitectura de computadores\Proyectos\Proyecto 1\grupo_08_proyecto_1\ASM\algoritmo_mult\Debug\algoritmo_mult.pdb
