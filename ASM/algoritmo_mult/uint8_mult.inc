@@ -60,21 +60,21 @@ ENDM
 
 		push ax
 
-		modulo temp						;modulo operation is applied to num_1 and num_2
+		modulo temp						;modulo operation is applied to temp and 2
 
-		cmp ax, 1						;cheks if the remainder is equal to one, this is done to determine if the numbers where even or not
+		cmp ax, 1						;cheks if the remainder is equal to one, this is done to find out if the numbers are even or not
 
 		je _shift_left					;jump to _shift_left if ax is equal to 1
 
 		_continue:
 
-		pop ax							;ax registero is back to its original value before applying modulo
+		pop ax							;ax register is back to its original value before applying modulo
 
 		inc cl							;Increments the 8 bit counter register
-		XOR dx, dx						;The dh egister is cleaned using xor
+		XOR dx, dx						;The dx egister is cleaned using xor
 		
 		mov bx, 2				
-		div bx							;divides de ax by two
+		div bx							;divides ax by two
 
 
 		cmp AX, 0
@@ -86,6 +86,8 @@ ENDM
 	_shift_left:
 				
 		push bx							;the 16 bit bx register is pushed to the stack to save its value
+		mov al, num_1					;num_1 is stored in the al registered before doing logical shift
+
 		xor bl,bl						;bl register is cleaned
 
 		shl num_1, cl					;a left shift is done with the value that the counter register has
@@ -94,12 +96,13 @@ ENDM
 		add bl, num_1					;current value of num_1 is added to bl
 		mov res, bl			
 
+		mov num_1, al					;the original value of num_1 before the shift is applied
 		pop bx							;the value of bx is restored
 
-		jmp _continue
+		jmp _continue					;always jumps to the continue segment
 
 
-	endwhile:
+	endwhile:							;the segment where it ends the loop
 
 		movzx eax, res					;move the result to eax
 
