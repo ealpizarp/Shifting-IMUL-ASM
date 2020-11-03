@@ -24,6 +24,7 @@ ExitProcess PROTO, dwExitCode:DWORD
 welcome_message BYTE "----------Welcome to the uint8_mult algorithm----------", 0				;The welcome message is stored
 prompt_1 BYTE "Please enter the multiplicand: ", 0												; Prompts are saved
 prompt_2 BYTE "Please enter the multiplier: ", 0
+prompt_3 BYTE "The result is: ",0
 multiplicand BYTE ?
 multiplier BYTE ?
 
@@ -40,15 +41,24 @@ _cli MACRO welcome_message, prompt_1, prompt_2													;the cli macro is ins
 
 	mov edx, OFFSET prompt_1																	
 	call WriteString
-	CALL ReadHex																				;A number is requested to the user in console
+	CALL ReadInt																				;A number is requested to the user in console
 	mov multiplicand, al																		;the low 8 bit register is taken
 
 	xor eax, eax																				;the eax register is cleaned
 
 	mov edx, OFFSET prompt_2																
 	call WriteString
-	CALL ReadHex																				;the multiplier is read from console
+	CALL ReadInt																				;the multiplier is read from console
 	mov multiplier, al
+	CALL CrLf
+
+ENDM
+
+_display_result MACRO prompt_3:REQ
+
+	mov edx, OFFSET prompt_3																	;prompt_3 is moved to the edx register
+	call WriteString																			; edx is printed to screen
+	call WriteDec																				;display the eax register in decimal value
 	CALL CrLf
 
 ENDM
@@ -64,7 +74,7 @@ mov bl, multiplier																				;mltiplier is moved to the 8 low bit BL re
 
 INVOKE uint8_mul																				;the uint8_mul is invoked
 
-CALL DumpRegs																					;registers are showned on console
+_display_result prompt_3																		;the result is displayed on console
 
 INVOKE ExitProcess,0
 
