@@ -16,23 +16,24 @@ cont = 0
 # temporary variables used in the algorithm are instantiated above
 
 num_1 = 7
-num_2 = 3
+num_2 = 4
 
 # Numbers to multiply (num_1 * num_2)
 
 
-while(num_2)                           # while num_2 > 0 
+while(num_2)                              # while num_2 > 0 
 
-  if(mod(num_2,2) == 1)                # checks if the number is even or not
+  if(bitand(num_2,1) == 1)                # calculates the modulo of num_2 and 2 (num_2 % 2)
   
-    res += bitshift(num_1, cont)       # shift in num_1 'cont' times to the left
+    res += bitshift(num_1, cont)          # shift in num_1 'cont' times to the left
     
   endif
 
-  cont += 1                            # adds 1 to cont for each iteration
+  cont += 1                               # adds 1 to cont for each iteration
  
-  num_2 = idivide(num_2, 2, "fix")     # a whole division is applied to num_2
+  num_2 = bitshift(num_2, -1)             # a bitshift to the right is applied to num_2 (num_2 / 2)
   
 endwhile        
 
-disp('The result is: '), disp(res)     # The result is displayed in console
+disp('The result is: '), disp(res)        # the result is displayed in console
+
