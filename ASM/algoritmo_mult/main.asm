@@ -25,6 +25,8 @@ welcome_message BYTE "----------Welcome to the uint8_mult algorithm----------", 
 prompt_1 BYTE "Please enter the multiplicand: ", 0												; Prompts are saved
 prompt_2 BYTE "Please enter the multiplier: ", 0
 prompt_3 BYTE "The result is: ",0
+error_message_multiplicand BYTE "Error with the multiplicand please enter the number again",0		;error message for multiplicand
+error_message_multiplier BYTE "Error with the multiplier please enter the number again",0			;error message for multiplier
 multiplicand BYTE ?
 multiplier BYTE ?
 
@@ -54,6 +56,36 @@ _cli MACRO welcome_message, prompt_1, prompt_2													;the cli macro is ins
 
 ENDM
 
+error_multiplicand:
+	mov edx, OFFSET error_message_multiplicand																;the error_message_multiplicand is moved to edx
+	call WriteString
+	call CrLf																					;A endline is made on console
+	call CrLf
+
+	xor eax, eax																				;the eax register is cleaned
+
+	mov edx, OFFSET prompt_1																	
+	call WriteString
+	CALL ReadInt																				;A number is requested to the user in console
+	mov multiplicand, al
+
+	jmp check_numbers
+
+error_multiplier:
+	mov edx, OFFSET error_message_multiplier																;the error_message_multiplier is moved to edx
+	call WriteString
+	call CrLf																					;A endline is made on console
+	call CrLf
+	
+	xor eax, eax																				;the eax register is cleaned
+
+	mov edx, OFFSET prompt_2																
+	call WriteString
+	CALL ReadInt																				;the multiplier is read from console
+	mov multiplier, al
+
+	jmp check_numbers
+
 _display_result MACRO prompt_3:REQ
 
 	mov edx, OFFSET prompt_3																	;prompt_3 is moved to the edx register
@@ -65,11 +97,20 @@ ENDM
 
 _cli welcome_message, prompt_1, prompt_2														;the cli is excecuted and parameters are asked to the user
 
-xor eax, eax																					;the registers are cleaned
-xor ebx, ebx
+check_numbers:
+	cmp multiplicand, 255																		;check the multiplicand is a number of 8 bits at most
+	ja error_multiplicand
 
-mov al, multiplicand																			;multiplicand is moved to the 8 low bit AL register (Acumulator)
-mov bl, multiplier																				;mltiplier is moved to the 8 low bit BL register    (Base register)
+	cmp multiplier, 255																			;check the multiplier is a number of 8 bits at most
+	ja error_multiplier
+
+	xor eax, eax																					;the registers are cleaned
+	xor ebx, ebx
+
+	mov al, multiplicand																			;multiplicand is moved to the 8 low bit AL register (Acumulator)
+	mov bl, multiplier																				;mltiplier is moved to the 8 low bit BL register    (Base register)
+
+
 
 
 INVOKE uint8_mul																				;the uint8_mul is invoked
