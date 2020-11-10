@@ -34,29 +34,6 @@ multiplier BYTE ?
 
 main PROC
 
-_cli MACRO welcome_message, prompt_1, prompt_2													;the cli macro is instantiated
-
-	mov edx, OFFSET welcome_message																;the welcolme message is moved to edx
-	call WriteString																			;the message is printed in console using Irvine library
-	call CrLf																					;A endline is made on console
-	call CrLf
-
-	xor eax, eax
-
-	mov edx, OFFSET prompt_1																	
-	call WriteString
-	CALL ReadInt																				;A number is requested to the user in console
-	mov multiplicand, eax																		;the low 8 bit register is taken
-
-	xor eax, eax																				;the eax register is cleaned
-
-	mov edx, OFFSET prompt_2																
-	call WriteString
-	CALL ReadInt																				;the multiplier is read from console
-	mov multiplier, eax
-	CALL CrLf
-
-ENDM
 
 error_multiplicand:
 	mov edx, OFFSET error_message_multiplicand																;the error_message_multiplicand is moved to edx
@@ -64,29 +41,15 @@ error_multiplicand:
 	call CrLf																					;A endline is made on console
 	call CrLf
 
-	xor eax, eax																				;the eax register is cleaned
-
-	mov edx, OFFSET prompt_1																	
-	call WriteString
-	CALL ReadInt																				;A number is requested to the user in console
-	mov multiplicand, eax
-
-	jmp check_numbers
+	jmp insert_multiplicando
 
 error_multiplier:
 	mov edx, OFFSET error_message_multiplier																;the error_message_multiplier is moved to edx
 	call WriteString
 	call CrLf																					;A endline is made on console
 	call CrLf
-	
-	xor eax, eax																				;the eax register is cleaned
 
-	mov edx, OFFSET prompt_2																
-	call WriteString
-	CALL ReadInt																				;the multiplier is read from console
-	mov multiplier, eax
-
-	jmp check_numbers
+	jmp insert_multiplier
 
 _display_result MACRO prompt_3:REQ
 
@@ -97,15 +60,36 @@ _display_result MACRO prompt_3:REQ
 
 ENDM
 
-_cli welcome_message, prompt_1, prompt_2														;the cli is excecuted and parameters are asked to the user
+welcome:
+	mov edx, OFFSET welcome_message																;the welcolme message is moved to edx
+	call WriteString																			;the message is printed in console using Irvine library
+	call CrLf																					;A endline is made on console
+	call CrLf
 
-check_numbers:
-	cmp multiplicand, 255																		;check the multiplicand is a number of 8 bits at most
+insert_multiplicando:
+	xor eax, eax
+
+	mov edx, OFFSET prompt_1																	
+	call WriteString
+	CALL ReadInt																				;A number is requested to the user in console
+	cmp multiplicand, 255
 	ja error_multiplicand
+	mov multiplicand, eax																		;the low 8 bit register is taken
 
+	cmp 2, 1
+
+insert_multiplier:
+	xor eax, eax																				;the eax register is cleaned
+
+	mov edx, OFFSET prompt_2																
+	call WriteString
+	CALL ReadInt																				;the multiplier is read from console
 	cmp multiplier, 255																			;check the multiplier is a number of 8 bits at most
 	ja error_multiplier
+	mov multiplier, eax
+	CALL CrLf													;the cli is excecuted and parameters are asked to the user
 
+ready_for_mult:
 	xor eax, eax																					;the registers are cleaned
 	xor ebx, ebx
 
