@@ -41,17 +41,19 @@ _cli MACRO welcome_message, prompt_1, prompt_2													;the cli macro is ins
 	call CrLf																					;A endline is made on console
 	call CrLf
 
+	xor eax, eax
+
 	mov edx, OFFSET prompt_1																	
 	call WriteString
 	CALL ReadInt																				;A number is requested to the user in console
-	mov multiplicand, al																		;the low 8 bit register is taken
+	mov multiplicand, eax																		;the low 8 bit register is taken
 
 	xor eax, eax																				;the eax register is cleaned
 
 	mov edx, OFFSET prompt_2																
 	call WriteString
 	CALL ReadInt																				;the multiplier is read from console
-	mov multiplier, al
+	mov multiplier, eax
 	CALL CrLf
 
 ENDM
@@ -67,7 +69,7 @@ error_multiplicand:
 	mov edx, OFFSET prompt_1																	
 	call WriteString
 	CALL ReadInt																				;A number is requested to the user in console
-	mov multiplicand, al
+	mov multiplicand, eax
 
 	jmp check_numbers
 
@@ -82,7 +84,7 @@ error_multiplier:
 	mov edx, OFFSET prompt_2																
 	call WriteString
 	CALL ReadInt																				;the multiplier is read from console
-	mov multiplier, al
+	mov multiplier, eax
 
 	jmp check_numbers
 
