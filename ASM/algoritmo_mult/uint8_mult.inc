@@ -1,9 +1,8 @@
-; Tecnologico de Costa Rica
+; ==========Costa Rica Institute of Technology===========
 ; Authors: Eric Alpizar
 ;		   Rodrigo Espinach
 ;		   Jimmy Salas
-; Last date modified: 11/2/2020
-
+; Last date modified: 11/3/2020
 
 
 
@@ -18,10 +17,10 @@
 
 .data
 
-num_1 BYTE ?
+num_1 WORD ?
 num_2 BYTE ?
-res BYTE ?
-temp byte ?
+res WORD ?
+temp BYTE ?
 
 
 .code
@@ -40,7 +39,7 @@ modulo MACRO temp:REQ
 
 ENDM
 
-	mov num_1, al						; the numbers to multiply are instatiated here (TEMPORARY)
+	mov num_1, AX						; the numbers to multiply are instatiated here (TEMPORARY)
 	mov num_2, bl
 	
 	xor bx, bx							; bx, cl and ax registers are cleaned
@@ -81,17 +80,17 @@ ENDM
 	_shift_left:
 
 		push bx							;the 16 bit bx register is pushed to the stack to save its value
-		mov al, num_1					;num_1 is stored in the al registered before doing logical shift
+		mov AX, num_1					;num_1 is stored in the al registered before doing logical shift
 
 		xor bl,bl						;bl register is cleaned
 
 		shl num_1, cl					;a left shift is done with the value that the counter register has
 
-		mov bl, res						;the temporary result is moved to the bl register
-		add bl, num_1					;current value of num_1 is added to bl
-		mov res, bl			
+		mov BX, res						;the temporary result is moved to the bl register
+		add BX, num_1					;current value of num_1 is added to bl
+		mov res, BX			
 
-		mov num_1, al					;the original value of num_1 before the shift is applied
+		mov num_1, AX					;the original value of num_1 before the shift is applied
 		pop bx							;the value of bx is restored
 
 		jmp _continue					;always jumps to the continue segment

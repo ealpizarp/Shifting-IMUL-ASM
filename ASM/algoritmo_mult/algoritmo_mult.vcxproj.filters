@@ -5,5 +5,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="uint8_mult.inc" />
+    <None Include="cli.inc" />
   </ItemGroup>
 </Project>

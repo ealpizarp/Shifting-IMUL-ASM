@@ -1,4 +1,4 @@
 ﻿C:\Program Files\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(491,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (algoritmo_mult.vcxproj).  This can lead to incorrect clean and rebuild behavior.
   Assembling main.asm...
-main.asm(16): warning A4011: multiple .MODEL directives found : .MODEL ignored
-  algoritmo_mult.vcxproj -> C:\Users\arikt\Desktop\Arquitectura de computadores\Proyectos\Proyecto 1\grupo_08_proyecto_1\ASM\algoritmo_mult\Debug\masm_mult_algorithm.exe
+main.asm(17): warning A4011: multiple .MODEL directives found : .MODEL ignored
+  algoritmo_mult.vcxproj -> C:\Users\arikt\Desktop\Test\Validation Test\grupo_08_proyecto1\ASM\algoritmo_mult\Debug\masm_mult_algorithm.exe

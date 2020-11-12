@@ -1,2 +1,4 @@
 C:\Users\arikt\Desktop\Arquitectura de computadores\Proyectos\Proyecto 1\grupo_08_proyecto_1\ASM\algoritmo_mult\Debug\masm_mult_algorithm.exe
 C:\Users\arikt\Desktop\Arquitectura de computadores\Proyectos\Proyecto 1\grupo_08_proyecto_1\ASM\algoritmo_mult\Debug\masm_mult_algorithm.pdb
+C:\Users\arikt\Desktop\Test\Validation Test\grupo_08_proyecto1\ASM\algoritmo_mult\Debug\masm_mult_algorithm.exe
+C:\Users\arikt\Desktop\Test\Validation Test\grupo_08_proyecto1\ASM\algoritmo_mult\Debug\masm_mult_algorithm.pdb

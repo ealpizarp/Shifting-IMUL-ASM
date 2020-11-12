@@ -22,6 +22,7 @@
     <MASM Include="main.asm" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="cli.inc" />
     <None Include="uint8_mult.inc" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
