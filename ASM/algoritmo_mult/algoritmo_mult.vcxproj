@@ -19,7 +19,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <MASM Include="cli.asm" />
     <MASM Include="main.asm" />
+    <MASM Include="uint8_mult.asm" />
   </ItemGroup>
   <ItemGroup>
     <None Include="cli.inc" />
@@ -31,7 +33,7 @@
     <ProjectGuid>{da09c58c-1086-4548-9294-862cd3f30459}</ProjectGuid>
     <RootNamespace>algoritmo_mult</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <ProjectName>masm_mult_algorithm</ProjectName>
+    <ProjectName>uint8_mult</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">

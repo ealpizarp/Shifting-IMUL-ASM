@@ -17,16 +17,26 @@ include cli.inc
 .model flat,stdcall
 .stack 4096
 
-
 ExitProcess PROTO, dwExitCode:DWORD
 
 .data
 	prompt_0 BYTE "Would you like to calculate again? (Y/N) ", 0	
 	validation_prompt BYTE "Invalid option!", 0
-	final_message BYTE "Thank you for choosing ´uint8_mult´ calculator", 0	
+	final_message BYTE "Thank you for choosing ´uint8_mult´ calculator!", 0	
+	result_prompt BYTE "The result is: ",0
+	result WORD ?
 .code
 
 main PROC
+
+_display_result MACRO prompt_3:REQ
+
+	mov edx, OFFSET prompt_3																	;prompt_3 is moved to the edx register
+	call WriteString																			; edx is printed to screen
+	call WriteDec																				;display the eax register in decimal value
+	CALL CrLf
+
+ENDM
 
 calculation:
 CALL CLRSCR
@@ -34,9 +44,11 @@ XOR EAX, EAX
 
 INVOKE _cli
 
-INVOKE uint8_mul																				;the uint8_mul is invoked
+INVOKE uint8_mul, ADDR result																	;the uint8_mul is invoked and the memory variable for result is passed by reference
 
-_display_result prompt_3																		;the result is displayed on console
+movzx eax, result																				;the 16 bit result is moved to eax with the zeros in the extended part od the regiter
+
+_display_result result_prompt																	;the result is displayed on console
 
 
 redo_calculation:

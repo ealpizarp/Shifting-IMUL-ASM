@@ -2,6 +2,8 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <MASM Include="main.asm" />
+    <MASM Include="uint8_mult.asm" />
+    <MASM Include="cli.asm" />
   </ItemGroup>
   <ItemGroup>
     <None Include="uint8_mult.inc" />
